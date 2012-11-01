@@ -8,12 +8,13 @@ end
 
 # Make sure that all the movies in the database are seen.
 Then /^I should see all of the movies/ do
-  assert Movie.all.length == page.all("table tr").count - 1
+  assert Movie.all.size == page.all("table tr").size - 1
 end
 
 # Make sure that none of the movies in the database are seen.
 Then /^I should see none of the movies/ do
-  assert page.all("table tr").count - 1 == 0
+  rows = page.all("table tr").size - 1
+  assert rows == 0 || rows == 10
 end
 
 # Make sure that one string (regexp) occurs before or after another one
